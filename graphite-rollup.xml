@@ -1,31 +1,5 @@
-<?xml version="1.0"?>
 <yandex>
-    <max_insert_block_size>4194304</max_insert_block_size>
-    <merge_tree>
-        <parts_to_delay_insert>600</parts_to_delay_insert>
-        <parts_to_throw_insert>3000</parts_to_throw_insert>
-        <max_delay_to_insert>1200</max_delay_to_insert>
-    </merge_tree>
-
     <graphite_rollup>
-        <default>
-            <function>max</function>
-            <retention>
-                <age>0</age>
-                <precision>10</precision>
-            </retention>
-            <retention>
-                <age>172800</age>
-                <precision>60</precision>
-            </retention>
-            <retention>
-                <age>3024000</age>
-                <precision>600</precision>
-            </retention>
-        </default>
-    </graphite_rollup>
-
-    <graphite_rollup_with_percentiles>
         <!-- carbon -->
         <pattern>
             <regexp>^carbon\.</regexp>
@@ -4677,5 +4651,5 @@
             <retention><age>63072000</age><precision>86400</precision></retention>
             <retention><age>94608000</age><precision>604800</precision></retention>
         </default>
-    </graphite_rollup_with_percentiles>
+    </graphite_rollup>
 </yandex>
