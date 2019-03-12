@@ -8,20 +8,196 @@
     </merge_tree>
 
     <graphite_rollup>
-        <default>
+        <!-- carbon -->
+        <pattern>
+            <regexp>^carbon\.</regexp>
+            <function>avg</function>
+            <retention><age>0</age><precision>60</precision></retention>
+            <retention><age>3600</age><precision>120</precision></retention>
+            <retention><age>86400</age><precision>600</precision></retention>
+            <retention><age>864000</age><precision>3600</precision></retention>
+        </pattern>
+
+        <!-- collectd -->
+        <pattern>
+            <regexp>^collectd\.</regexp>
+            <function>avg</function>
+            <retention><age>0</age><precision>60</precision></retention>
+            <retention><age>3600</age><precision>120</precision></retention>
+            <retention><age>86400</age><precision>600</precision></retention>
+            <retention><age>864000</age><precision>3600</precision></retention>
+        </pattern>
+
+        <!-- nginx2es -->
+        <pattern>
+            <regexp>^nginx2es\.</regexp>
+            <function>sum</function>
+            <retention><age>0</age><precision>60</precision></retention>
+            <retention><age>604800</age><precision>600</precision></retention>
+            <retention><age>2592000</age><precision>3600</precision></retention>
+        </pattern>
+
+        <!-- high -->
+        <pattern>
+            <regexp>^high\.</regexp>
+            <function>sum</function>
+            <retention><age>0</age><precision>10</precision></retention>
+            <retention><age>172800</age><precision>60</precision></retention>
+            <retention><age>864000</age><precision>900</precision></retention>
+            <retention><age>1728000</age><precision>1800</precision></retention>
+            <retention><age>3456000</age><precision>3600</precision></retention>
+            <retention><age>10368000</age><precision>21600</precision></retention>
+            <retention><age>34560000</age><precision>43200</precision></retention>
+            <retention><age>63072000</age><precision>86400</precision></retention>
+            <retention><age>94608000</age><precision>604800</precision></retention>
+        </pattern>
+        <pattern>
+            <regexp>^high\.min\.</regexp>
+            <function>min</function>
+            <retention><age>0</age><precision>10</precision></retention>
+            <retention><age>172800</age><precision>60</precision></retention>
+            <retention><age>864000</age><precision>900</precision></retention>
+            <retention><age>1728000</age><precision>1800</precision></retention>
+            <retention><age>3456000</age><precision>3600</precision></retention>
+            <retention><age>10368000</age><precision>21600</precision></retention>
+            <retention><age>34560000</age><precision>43200</precision></retention>
+            <retention><age>63072000</age><precision>86400</precision></retention>
+            <retention><age>94608000</age><precision>604800</precision></retention>
+        </pattern>
+        <pattern>
+            <regexp>^high\.avg\.</regexp>
+            <function>avg</function>
+            <retention><age>0</age><precision>10</precision></retention>
+            <retention><age>172800</age><precision>60</precision></retention>
+            <retention><age>864000</age><precision>900</precision></retention>
+            <retention><age>1728000</age><precision>1800</precision></retention>
+            <retention><age>3456000</age><precision>3600</precision></retention>
+            <retention><age>10368000</age><precision>21600</precision></retention>
+            <retention><age>34560000</age><precision>43200</precision></retention>
+            <retention><age>63072000</age><precision>86400</precision></retention>
+            <retention><age>94608000</age><precision>604800</precision></retention>
+        </pattern>
+        <pattern>
+            <regexp>^high\.max\.</regexp>
             <function>max</function>
-            <retention>
-                <age>0</age>
-                <precision>10</precision>
-            </retention>
-            <retention>
-                <age>172800</age>
-                <precision>60</precision>
-            </retention>
-            <retention>
-                <age>3024000</age>
-                <precision>600</precision>
-            </retention>
+            <retention><age>0</age><precision>10</precision></retention>
+            <retention><age>172800</age><precision>60</precision></retention>
+            <retention><age>864000</age><precision>900</precision></retention>
+            <retention><age>1728000</age><precision>1800</precision></retention>
+            <retention><age>3456000</age><precision>3600</precision></retention>
+            <retention><age>10368000</age><precision>21600</precision></retention>
+            <retention><age>34560000</age><precision>43200</precision></retention>
+            <retention><age>63072000</age><precision>86400</precision></retention>
+            <retention><age>94608000</age><precision>604800</precision></retention>
+        </pattern>
+
+        <!-- medium -->
+        <pattern>
+            <regexp>^medium\.</regexp>
+            <function>sum</function>
+            <retention><age>0</age><precision>60</precision></retention>
+            <retention><age>864000</age><precision>900</precision></retention>
+            <retention><age>1728000</age><precision>1800</precision></retention>
+            <retention><age>3456000</age><precision>3600</precision></retention>
+            <retention><age>10368000</age><precision>21600</precision></retention>
+            <retention><age>34560000</age><precision>43200</precision></retention>
+            <retention><age>63072000</age><precision>86400</precision></retention>
+            <retention><age>94608000</age><precision>604800</precision></retention>
+        </pattern>
+        <pattern>
+            <regexp>^medium\.min\.</regexp>
+            <function>min</function>
+            <retention><age>0</age><precision>60</precision></retention>
+            <retention><age>864000</age><precision>900</precision></retention>
+            <retention><age>1728000</age><precision>1800</precision></retention>
+            <retention><age>3456000</age><precision>3600</precision></retention>
+            <retention><age>10368000</age><precision>21600</precision></retention>
+            <retention><age>34560000</age><precision>43200</precision></retention>
+            <retention><age>63072000</age><precision>86400</precision></retention>
+            <retention><age>94608000</age><precision>604800</precision></retention>
+        </pattern>
+        <pattern>
+            <regexp>^medium\.avg\.</regexp>
+            <function>avg</function>
+            <retention><age>0</age><precision>60</precision></retention>
+            <retention><age>864000</age><precision>900</precision></retention>
+            <retention><age>1728000</age><precision>1800</precision></retention>
+            <retention><age>3456000</age><precision>3600</precision></retention>
+            <retention><age>10368000</age><precision>21600</precision></retention>
+            <retention><age>34560000</age><precision>43200</precision></retention>
+            <retention><age>63072000</age><precision>86400</precision></retention>
+            <retention><age>94608000</age><precision>604800</precision></retention>
+        </pattern>
+        <pattern>
+            <regexp>^medium\.max\.</regexp>
+            <function>max</function>
+            <retention><age>0</age><precision>60</precision></retention>
+            <retention><age>864000</age><precision>900</precision></retention>
+            <retention><age>1728000</age><precision>1800</precision></retention>
+            <retention><age>3456000</age><precision>3600</precision></retention>
+            <retention><age>10368000</age><precision>21600</precision></retention>
+            <retention><age>34560000</age><precision>43200</precision></retention>
+            <retention><age>63072000</age><precision>86400</precision></retention>
+            <retention><age>94608000</age><precision>604800</precision></retention>
+        </pattern>
+
+        <!-- low -->
+        <pattern>
+            <regexp>^low\.</regexp>
+            <function>sum</function>
+            <retention><age>0</age><precision>600</precision></retention>
+            <retention><age>15552000</age><precision>1800</precision></retention>
+            <retention><age>31536000</age><precision>3600</precision></retention>
+            <retention><age>63072000</age><precision>21600</precision></retention>
+            <retention><age>126144000</age><precision>43200</precision></retention>
+            <retention><age>252288000</age><precision>86400</precision></retention>
+            <retention><age>315360000</age><precision>604800</precision></retention>
+        </pattern>
+        <pattern>
+            <regexp>^low\.min\.</regexp>
+            <function>min</function>
+            <retention><age>0</age><precision>600</precision></retention>
+            <retention><age>15552000</age><precision>1800</precision></retention>
+            <retention><age>31536000</age><precision>3600</precision></retention>
+            <retention><age>63072000</age><precision>21600</precision></retention>
+            <retention><age>126144000</age><precision>43200</precision></retention>
+            <retention><age>252288000</age><precision>86400</precision></retention>
+            <retention><age>315360000</age><precision>604800</precision></retention>
+        </pattern>
+        <pattern>
+            <regexp>^low\.avg\.</regexp>
+            <function>avg</function>
+            <retention><age>0</age><precision>600</precision></retention>
+            <retention><age>15552000</age><precision>1800</precision></retention>
+            <retention><age>31536000</age><precision>3600</precision></retention>
+            <retention><age>63072000</age><precision>21600</precision></retention>
+            <retention><age>126144000</age><precision>43200</precision></retention>
+            <retention><age>252288000</age><precision>86400</precision></retention>
+            <retention><age>315360000</age><precision>604800</precision></retention>
+        </pattern>
+        <pattern>
+            <regexp>^low\.max\.</regexp>
+            <function>max</function>
+            <retention><age>0</age><precision>600</precision></retention>
+            <retention><age>15552000</age><precision>1800</precision></retention>
+            <retention><age>31536000</age><precision>3600</precision></retention>
+            <retention><age>63072000</age><precision>21600</precision></retention>
+            <retention><age>126144000</age><precision>43200</precision></retention>
+            <retention><age>252288000</age><precision>86400</precision></retention>
+            <retention><age>315360000</age><precision>604800</precision></retention>
+        </pattern>
+
+        <!-- default -->
+        <default>
+            <function>sum</function>
+            <retention><age>0</age><precision>60</precision></retention>
+            <retention><age>864000</age><precision>900</precision></retention>
+            <retention><age>1728000</age><precision>1800</precision></retention>
+            <retention><age>3456000</age><precision>3600</precision></retention>
+            <retention><age>10368000</age><precision>21600</precision></retention>
+            <retention><age>34560000</age><precision>43200</precision></retention>
+            <retention><age>63072000</age><precision>86400</precision></retention>
+            <retention><age>94608000</age><precision>604800</precision></retention>
         </default>
     </graphite_rollup>
 
@@ -4677,5 +4853,6 @@
             <retention><age>63072000</age><precision>86400</precision></retention>
             <retention><age>94608000</age><precision>604800</precision></retention>
         </default>
+
     </graphite_rollup_with_percentiles>
 </yandex>

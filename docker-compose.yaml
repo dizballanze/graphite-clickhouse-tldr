@@ -22,24 +22,36 @@ services:
     - default
 
   carbon-clickhouse:
-    image: lomik/carbon-clickhouse:v0.9.1
-    volumes:
+    image: mosquito/carbon-clickhouse
+    #volumes:
     #- "./data/carbon-clickhouse:/data/carbon-clickhouse/data"
-    - "./carbon-clickhouse.conf:/etc/carbon-clickhouse/carbon-clickhouse.conf"
+    #- "./carbon-clickhouse.conf:/etc/carbon-clickhouse/carbon-clickhouse.conf"
     ports:
     - "2003:2003" # plain tcp
     - "2003:2003/udp" # plain udp
     - "2004:2004" # pickle
     networks:
     - default
+    environment:
+      CLICKHOUSE_URL: http://clickhouse:8123/
+      CLICKHOUSE_DATA_TABLE: graphite.data
+      CLICKHOUSE_TREE_TABLE: graphite.metrics
+      DATA_CHUNK_INTERVAL: 30s
+      DATA_CHUNK_AUTO_INTERVAL: "5:10s,20:60s,100:600s"
 
   graphite-clickhouse:
-    image: dizballanze/graphite-clickhouse:latest
+    image: graphite-clickhouse:latest
     volumes:
     - "./graphite-rollup.xml:/etc/graphite-clickhouse/rollup.xml"
     - "./graphite-clickhouse.conf:/etc/graphite-clickhouse/graphite-clickhouse.conf"
     networks:
     - default
+    environment:
+      CLICKHOUSE_URL: http://clickhouse:8123/
+      CLICKHOUSE_DATA_TABLE: graphite.data
+      CLICKHOUSE_TREE_TABLE: graphite.metrics
+      COMMON_MAX_CPU: 2
+      COMMON_KEEP_DUPLICATES: "true"
 
   carbonapi:
     image: openmetric/carbonapi
